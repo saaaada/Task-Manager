@@ -3,8 +3,8 @@ require_once 'includes/db.php';
 $errors = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name     = trim($_POST['name']);
-    $email    = trim($_POST['email']);
+    $name     = $_POST['name'];
+    $email    = $_POST['email'];
     $password = $_POST['password'];
     $confirm  = $_POST['confirm'];
 
@@ -43,8 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php include 'includes/header.php'; ?>
 <div class="container mt-5">
     <h2>Register</h2>
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
     <?php if (!empty($errors)): ?>
         <div class="alert alert-danger">
             <?php foreach ($errors as $e): ?>
@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Register</button>
-            <a href="#" class="btn btn-link">Already have an account?</a>
+            <a href="login.php" class="btn btn-link">Already have an account?</a>
         </div>
     </form>
 </div>

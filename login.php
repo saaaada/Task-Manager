@@ -1,40 +1,32 @@
 <?php
 require_once 'includes/db.php';
 session_start();
-$errors = [];
-
+$error = [];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email    = trim($_POST['email']);
+    $email = $_POST['email'];
     $password = $_POST['password'];
-
     if (empty($email) || empty($password)) {
-        $errors[] = "Email and password are required.";
+        $error[] = "The Fields required";
     } else {
-        // Check if user exists
-        $stmt = $con->prepare("SELECT id, name, password FROM users WHERE email = ?");
+        $stmt = $con->prepare("SELECT id, name, password FROM users WHERE email = ? ");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
-
         if ($stmt->num_rows === 1) {
             $stmt->bind_result($id, $name, $hashed);
             $stmt->fetch();
-
             if (password_verify($password, $hashed)) {
-                // Correct login: start session
                 $_SESSION['user_id'] = $id;
                 $_SESSION['user_name'] = $name;
-
                 header("Location: dashboard.php");
                 exit;
             } else {
-                $errors[] = "Incorrect password.";
+                $error[] = "Password doesnot matches";
             }
         } else {
-            $errors[] = "Email not found.";
+            $error[] = "The Email not find";
         }
-
-        $stmt->close();
+             $stmt->close();
     }
 }
 ?>
@@ -42,9 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container mt-4">
     <h2>Login</h2>
 
-    <?php if (!empty($errors)): ?>
+    <?php if (!empty($error)): ?>
         <div class="alert alert-danger">
-            <?php foreach ($errors as $e): ?>
+            <?php foreach ($error as $e): ?>
                 <div><?= $e ?></div>
             <?php endforeach; ?>
         </div>

@@ -12,14 +12,16 @@
 <script>
   const toggleBtn = document.getElementById('themeToggle');
   const htmlTag = document.documentElement;
-  
+
   toggleBtn.addEventListener('click', () => {
-    const current = htmlTag.getAttribute('data-bs-theme');
+    const current = htmlTag.getAttribute('data-bs-theme') || 'dark'; // default is dark
     const newTheme = current === 'dark' ? 'light' : 'dark';
+
     htmlTag.setAttribute('data-bs-theme', newTheme);
-    toggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    toggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙'; // ☀️ = dark mode is on
   });
 </script>
+
 
 </body>
 </html>

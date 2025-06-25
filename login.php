@@ -1,3 +1,4 @@
+<html lang="en" data-bs-theme="dark">
 <?php
 require_once 'includes/db.php';
 session_start();
@@ -26,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $error[] = "The Email not find";
         }
-             $stmt->close();
+        $stmt->close();
     }
 }
 ?>

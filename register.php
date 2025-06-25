@@ -1,3 +1,4 @@
+<html lang="en" data-bs-theme="dark">
 <?php
 require_once 'includes/db.php';
 // $errors = [];

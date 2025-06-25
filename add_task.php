@@ -1,3 +1,4 @@
+<html lang="en" data-bs-theme="dark">
 <?php
 session_start();
 require_once 'includes/db.php';
@@ -17,6 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($title) || empty($description)) {
         $errors[] = "Task title as well as description is required.";
+    }
+    if (strlen($title) > 100 || strlen($description) > 500) {
+        $errors[] = "Maximum lenth limit for title is 100 and description is 500";
     }
 
     if (empty($errors)) {

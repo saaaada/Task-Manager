@@ -36,7 +36,9 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 
     <div class="d-flex align-items-center">
       <!-- Theme Toggle Switch -->
-      <button id="themeToggle" class="btn btn-outline-secondary btn-sm me-2">🌙</button>
+<button id="themeToggle" class="btn btn-sm btn-outline-secondary">
+  ☀️
+</button>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>

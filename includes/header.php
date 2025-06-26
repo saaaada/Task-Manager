@@ -32,18 +32,24 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 <div class="wrapper">
 <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
   <div class="container">
-    <a class="navbar-brand fw-bold" href="index.php">Task Manager</a>
+    <a class="navbar-brand fw-bold" href="dashboard.php">Task Manager</a>
+<div class="d-flex align-items-center gap-5">
+  <!-- 🌗 Theme Toggle -->
+  <button id="themeToggle" class="btn btn-sm btn-outline-secondary">☀️</button>
 
-    <div class="d-flex align-items-center">
-      <!-- Theme Toggle Switch -->
-<button id="themeToggle" class="btn btn-sm btn-outline-secondary">
-  ☀️
-</button>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
+  <!-- 🔍 Search Form -->
+  <form method="GET" action="dashboard.php" class="d-flex" role="search">
+    <input
+      class="form-control form-control-sm me-2"
+      type="search"
+      name="search"
+      placeholder="Search tasks..."
+      value="<?= htmlspecialchars($_GET['search'] ?? '') ?>"
+      style="max-width: 100; max-height:100"
+    >
+    <button class="btn btn-sm btn-primary"type="submit">Search</button>
+  </form>
+</div>
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">

@@ -20,22 +20,22 @@
         exit;
     }
     require_once 'includes/db.php';
-$user_id = $_SESSION['user_id'];
-$search = $_GET['search'] ?? '';
+    $user_id = $_SESSION['user_id'];
+    $search = $_GET['search'] ?? ' ';
 
-if ($search) {
-    // Search by title or description (case-insensitive)
-    $stmt = $con->prepare("SELECT * FROM tasks WHERE user_id = ? AND (title LIKE ? OR description LIKE ?) ORDER BY created_at DESC");
-    $like = "%$search%";
-    $stmt->bind_param("sss", $user_id, $like, $like);
-} else {
-    // Show all tasks
-    $stmt = $con->prepare("SELECT * FROM tasks WHERE user_id = ? ORDER BY created_at DESC");
-    $stmt->bind_param("i", $user_id);
-}
+    if ($search) {
+        // Search by title or description (case-insensitive)
+        $stmt = $con->prepare("SELECT * FROM tasks WHERE user_id = ? AND (title LIKE ? OR description LIKE ?) ORDER BY created_at DESC");
+        $like = "%$search%";
+        $stmt->bind_param("sss", $user_id, $like, $like);
+    } else {
+        // Show all tasks
+        $stmt = $con->prepare("SELECT * FROM tasks WHERE user_id = ? ORDER BY created_at DESC");
+        $stmt->bind_param("i", $user_id);
+    }
 
-$stmt->execute();
-$result = $stmt->get_result();
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     ?>
 

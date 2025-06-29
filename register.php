@@ -1,47 +1,7 @@
 <html lang="en" data-bs-theme="dark">
 <?php
 require_once 'includes/db.php';
-// $errors = [];
 
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     $name     = $_POST['name'];
-//     $email    = $_POST['email'];
-//     $password = $_POST['password'];
-//     $confirm  = $_POST['confirm'];
-
-//     // Validation
-//     if (empty($name) || empty($email) || empty($password) || empty($confirm)) {
-//         $errors[] = "All fields are required.";
-//     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-//         $errors[] = "Invalid email format.";
-//     } elseif ($password !== $confirm) {
-//         $errors[] = "Passwords do not match.";
-//     } else {
-//         // Check if user already exists
-//         $stmt = $con->prepare("SELECT id FROM users WHERE email = ?");
-//         $stmt->bind_param("s", $email);
-//         $stmt->execute();
-//         $stmt->store_result();
-
-//         if ($stmt->num_rows > 0) {
-//             $errors[] = "Email already exists.";
-//         } else {
-//             // Hash password and insert
-//             $hashed = password_hash($password, PASSWORD_DEFAULT);
-//             $stmt = $con->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
-//             $stmt->bind_param("sss", $name, $email, $hashed);
-//             if ($stmt->execute()) {
-//                 header("Location: login.php");
-//                 exit;
-//             } else {
-//                 $errors[] = "Registration failed. Try again.";
-//             }
-//         }
-//         $stmt->close();
-//     }
-// }
-?>
-<?php
 $error = [];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Name = $_POST['name'];
@@ -64,13 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt = $con->prepare("INSERT INTO `users` (Name,Email,Password) VALUES (?,?,?)");
             $stmt->bind_param("sss", $Name, $Email, $Password_hash);
             if ($stmt->execute()) {
-             header("Location: login.php");
-       
+                header("Location: login.php");
+
                 exit;
             } else {
                 $error[] = "You not regester Due to some reason";
             }
-            
+
         }
 
     }
